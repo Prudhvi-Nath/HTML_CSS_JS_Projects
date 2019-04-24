@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module Score Calulation</title>
+</head>
+
+<body>
+<div id="module_marks" style="margin:210px 310px 100px 620px">
+
+    <form onsubmit="myFunction()" method="post">
+        <h2>Module Score Caluclation</h2>
+    Enter Employee Number:<input type="number" min="1" max="100" maxlength="6" id="employee_num" name="empnum" required><br>
+    Enter Employee Name:<input type="text" id="employee_name" maxlength="30" name="empname" required><br>
+
+      Choose Domain:<select id="domainselect" name="domainselect" onchange="marks(this.id,'moduleselect')" required>
+        <option value="">Select Domain</option>
+        <option value="JEE">JEE</option>
+        <option value=".NET">.NET</option>
+
+    </select><br>
+        <hr>
+    Choose Module:<select id="moduleselect" name="moduleselect" required>
+        <option value=""></option>
+
+    </select>
+    <hr/>
+
+    </select><br>
+    Enter MPT Marks:<input type="number" min="0" max="100" id="mptmarks" required><br>
+    Enter MTT Marks:<input type="number" min="0" max="100" id="mttmarks" required><br>
+    Enter Assignment Marks:<input type="number" min="0" max="100" id="assgnmarks" required><br>
+        <input type="submit" value="Calculate Module Score" >&nbsp;
+
+    </form>
+</div>
+</body>
+</html>
+<style>
+    body{
+        border:4px solid black;
+        border-radius: 5px;
+        padding:65px;
+        font-size:15px;
+        background-color: lightblue;
+
+        margin:3px;
+    }
+
+</style>
+<script type="text/javascript">
+
+    function myFunction() {
+        var x=parseInt(document.getElementById("mptmarks").value);
+
+        var y=parseInt(document.getElementById("mttmarks").value);
+        var z=parseInt(document.getElementById("assgnmarks").value);
+        var a=x+y+z;
+       alert("The value of x mpt and mtt and Assgnment marks is:"+a);
+
+    }
+
+    function marks(s1,s2) {
+        var s1 = document.getElementById(s1);
+        var s2 = document.getElementById(s2);
+        s2.innerHTML = "";
+        if(s1.value == "JEE"){
+            var optionArray = ["selectmodule|SelectModule","core java|Core Java","servlet-jsp|Servlet-JSP","spring|Spring"];
+        } else if(s1.value = ".NET"){
+            var optionArray = ["selectmodule|SelectModule","c#|C#","ado.net|ADO.NET","asp.net|ASP.NET"];
+        }
+        for(var option in optionArray){
+            var pair = optionArray[option].split("|");
+            var newOption = document.createElement("option");
+            newOption.value = pair[0];
+            newOption.innerHTML = pair[1];
+            s2.options.add(newOption);
+        }
+    }
+
+
+
+
+</script>
